@@ -1,33 +1,40 @@
 ﻿
 // See https://aka.ms/new-console-template for more information
 
-static List<string> GetEmployees()
+static List<Employee> GetEmployees()
 {
-List<string> employees = new List<string>();
+List<Employee> employees = new List<Employee>();
 while (true) 
 {
-    Console.WriteLine("Please enter a name: ");
-// Get a name from the console and assign it to a variable
-    string? input = Console.ReadLine();
-    if (input == "")
+    Console.WriteLine("Please enter your first name: (Leave empty to exit)");
+    string firstName = Console.ReadLine();
+    if (firstName == "")
     {
         break;
     }
-    Employee currentEmployee = new Employee(input, "Smith");
-    employees.Add(currentEmployee.GetName());
+    Console.WriteLine("Please enter your last name");
+    string lastName = Console.ReadLine();
+    Console.WriteLine("Please enter your id");
+    int id = Int32.Parse(Console.ReadLine()); 
+    Console.WriteLine("Please enter your photo URL");
+    string photoUrl = Console.ReadLine();
+    Employee currentEmployee = new Employee(firstName, lastName, id, photoUrl);
+    employees.Add(currentEmployee);
 }
 return employees;
 }
 
-static void PrintEmployees(List<string> employees)
+static void PrintEmployees(List<Employee> employees)
 {
     for (int i = 0; i < employees.Count; i++)
     {
-        Console.WriteLine(employees[i]);
+        string template = "{0,-10}\t{1,-20}\t{2}";
+        Console.WriteLine(String.Format(template, employees[i].GetId(), employees[i].GetName(), employees[i].GetPhotoUrl()));
+
     }
 }
 
 {
-    List<string> employees = GetEmployees();
+    List<Employee> employees = GetEmployees();
     PrintEmployees(employees);
 }
