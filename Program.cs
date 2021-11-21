@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
 // See https://aka.ms/new-console-template for more information
-    // This is our employee-getting code now
 
 static List<string> GetEmployees()
 {
@@ -14,7 +13,8 @@ while (true)
     {
         break;
     }
-    employees.Add(input);
+    Employee currentEmployee = new Employee(input, "Smith");
+    employees.Add(currentEmployee.GetName());
 }
 return employees;
 }
